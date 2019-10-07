@@ -1,0 +1,25 @@
+---
+
+- name: Include OS family specific vars
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install mariadb
+  include_tasks: "install-{{ ansible_os_family }}.yml"
+
+- name: ensure mariadb is running
+  service:
+    name: "{{ mariadb_service }}"
+    state: started
+    enabled: true
+
+- name: Create and configure the root account
+  include_tasks: user-root.yml
+
+- name: Create and configure the monitoring account
+  include_tasks: user-monitoring.yml
+
+- name: Install and configure automysqlbackup
+  include_tasks: "automysqlbackup-{{ ansible_os_family }}.yml"
+
+- name: create databases and users
+  include_tasks: databases.yml

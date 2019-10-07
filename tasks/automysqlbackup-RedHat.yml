@@ -1,0 +1,17 @@
+---
+
+- name: install automysqlbackup
+  copy:
+    src: automysqlbackup
+    dest: /usr/local/sbin/automysqlbackup
+    owner: root
+    group: root
+    mode: "0750"
+
+- name: configure automysqlbackup
+  template:
+    src: automysqlbackup.j2
+    dest: /etc/default/automysqlbackup
+    owner: root
+    group: root
+    mode: "0644"

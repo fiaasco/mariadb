@@ -1,0 +1,14 @@
+---
+
+- name: install automysqlbackup
+  apt:
+    name: automysqlbackup
+    state: present
+
+- name: configure automysqlbackup
+  template:
+    src: automysqlbackup.j2
+    dest: /etc/default/automysqlbackup
+    owner: root
+    group: root
+    mode: "0644"

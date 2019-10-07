@@ -1,0 +1,17 @@
+---
+
+## description: location of the mariadb pid file
+# type: string
+mariadb_pidfile: "/var/run/mariadb/mariadb.pid"
+
+## description: location of the mariadb socket file
+# type: string
+mariadb_socketfile: "/var/run/mariadb/mariadb.sock"
+
+## description: name of the mariadb service to use
+# type: string
+mariadb_service: mariadb
+
+## description: directory for logging output
+# type: string
+mariadb_logdir: /var/log/mariadb

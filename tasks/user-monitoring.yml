@@ -1,0 +1,9 @@
+---
+
+- name: grant usage for monitor user
+  mysql_user:
+    name: "{{ mariadb_monitor.user }}"
+    password: "{{ mariadb_monitor.pass }}"
+    priv: "*.*:USAGE"
+    state: present
+    append_privs: true

@@ -1,0 +1,13 @@
+---
+
+- name: start mysql
+  service:
+    name: "{{ mariadb_service }}"
+    state: started
+    enabled: true
+
+- name: restart mysql
+  service:
+    name: "{{ mariadb_service }}"
+    state: restarted
+    enabled: true
