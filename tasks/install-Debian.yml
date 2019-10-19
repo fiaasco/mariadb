@@ -1,19 +1,4 @@
 ---
-
-- name: remove conflicting mysql packages
-  apt:
-    name:
-      - mysql-client-5.5
-      - mysql-server-5.5
-      - mysql-server-core-5.5
-      - libmysqlclient18
-    state: absent
-
-- name: remove obsolete config files (my.cnf alternative will try to use it)
-  file:
-    path: /etc/mysql/my.cnf.migrated
-    state: absent
-
 - name: install mariadb
   apt:
     name:

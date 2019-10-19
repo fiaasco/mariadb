@@ -1,28 +1,31 @@
 ---
 
-## description: allow remote connections to MariaDB
-## type: bool
+# description: allow remote connections to MariaDB
+# type: bool
 mariadb_remote: false
 
-## description: include innodb options for high performance
-## type: bool
+# description: include innodb options for high performance
+# type: bool
 mariadb_high_performance: false
 
-## description: user/pass combination to monitor mariadb
-## type: dict
+# description: user/pass combination to monitor mariadb
+# type: dict
 mariadb_monitor:
   user: monitor
   pass: rotinom
 
-## description: email address for the administrator
-## type: string
+# description: email address for the administrator
+# type: string
 mariadb_admin: ""
 
-## description: databases/users to create
-## type: dict
-## mariadb_databases:
-## - name: database1
-##   pass: password1
-## - name: database2
-##   pass: password2
+# description: databases/users to create
+# type: dict
+# mariadb_databases:
+# - name: database1
+#   pass: password1
+# - name: database2
+#   pass: password2
+#   ip:
+#     - '10.1.2.3'
+#     - '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
 mariadb_databases: []
