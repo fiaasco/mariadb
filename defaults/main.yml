@@ -8,6 +8,10 @@ mariadb_remote: false
 # type: bool
 mariadb_high_performance: false
 
+# description: create monitoring user?
+# type: bool
+mariadb_enable_monitor_user: true
+
 # description: user/pass combination to monitor mariadb
 # type: dict
 mariadb_monitor:
