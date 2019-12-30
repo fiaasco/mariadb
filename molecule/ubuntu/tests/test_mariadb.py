@@ -17,20 +17,8 @@ def test_mariadb_package(host):
 def test_mariadb_server_config(host):
     f = host.file('/etc/mysql/mariadb.conf.d/50-server.cnf')
     assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
-
-
-def test_mariadb_logdir(host):
-    d = host.file('/var/log/mysql')
-    assert d.is_directory
-
-
-def test_mariadb_server_innodb_config(host):
     f = host.file('/etc/mysql/conf.d/innodb.cnf')
     assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
 
 
 def test_mariadb_service(host):
@@ -38,3 +26,11 @@ def test_mariadb_service(host):
     """
     assert host.service('mysql').is_enabled
     assert host.service('mysql').is_running
+
+
+def test_databases(host):
+    """ Test client
+    """
+    with host.sudo():
+        pcs = host.run('mysql -u root -e "show full processlist"')
+        assert 'show full processlist' in pcs.stdout

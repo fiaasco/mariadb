@@ -12,11 +12,18 @@
     state: started
     enabled: true
 
+- name: test for .my.cnf
+  stat:
+    path: /root/.my.cnf
+  register: my_cnf
+
 - name: Create and configure the root account
   include_tasks: user-root.yml
+  when: not my_cnf.stat.exists
 
 - name: Create and configure the monitoring account
   include_tasks: user-monitoring.yml
+  when: mariadb_enable_monitor_user|bool
 
 - name: Install and configure automysqlbackup
   include_tasks: "automysqlbackup-{{ ansible_os_family }}.yml"

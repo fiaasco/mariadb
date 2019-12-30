@@ -3,7 +3,9 @@
 - name: generate random password
   shell: openssl passwd -in /dev/urandom | head -1
   register: mysqlrootpass
-  when: mysqlinstall.changed
+  when: >
+    mysqlinstall.changed
+    or not my_cnf.stat.exists
   tags:
     - skip_ansible_lint
 

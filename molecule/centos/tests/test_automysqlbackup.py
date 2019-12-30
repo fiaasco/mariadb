@@ -7,6 +7,8 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_automysqlbackup_config(host):
+    """ check configuration
+    """
     f = host.file('/etc/default/automysqlbackup')
     assert f.exists
     assert f.user == 'root'
@@ -17,5 +19,7 @@ def test_automysqlbackup_config(host):
 
 @pytest.mark.parametrize('db', ['molecule', 'molecule2'])
 def test_automysqlbackup_outdir(host, db):
+    """ check db dumps (side-effect)
+    """
     d = host.file('/var/lib/automysqlbackup/daily/%s' % db)
     assert d.is_directory
