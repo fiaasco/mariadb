@@ -2,11 +2,11 @@
 
 ## description: location of the mariadb pid file
 # type: string
-mariadb_pidfile: "/var/run/mariadb/mariadb.pid"
+mariadb_pidfile: "/run/mariadb/mariadb.pid"
 
 ## description: location of the mariadb socket file
 # type: string
-mariadb_socketfile: "/var/run/mariadb/mariadb.sock"
+mariadb_socketfile: "/var/lib/mysql/mysql.sock"
 
 ## description: name of the mariadb service to use
 # type: string

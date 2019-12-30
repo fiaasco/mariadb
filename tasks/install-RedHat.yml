@@ -1,19 +1,30 @@
 ---
+- name: prepare el7
+  yum:
+    name:
+      - MySQL-python
+    state: present
+  when: ansible_distribution_major_version is version('8', '<')
+
+- name: prepare el8
+  yum:
+    name:
+      - python3-PyMySQL
+    state: present
+  when: ansible_distribution_major_version is version('8', '>=')
 
 - name: install mariadb
   yum:
     name:
-      - MySQL-python
       - mariadb-server
       - openssl
     state: present
   register: mysqlinstall
-  notify: start mysql
 
-- name: put mariadb.conf.d templates
+- name: put server.cnf template
   template:
     src: server.cnf.j2
-    dest: /etc/my.cnf.d/server.cnf"
+    dest: /etc/my.cnf.d/mariadb-server.cnf
     owner: root
     group: root
     mode: "0644"

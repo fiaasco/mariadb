@@ -15,7 +15,7 @@ def test_mariadb_package(host):
 
 
 def test_mariadb_server_config(host):
-    f = host.file('/etc/my.cnf.d/server.cnf')
+    f = host.file('/etc/my.cnf.d/mariadb-server.cnf')
     assert f.exists
     f = host.file('/etc/my.cnf.d/innodb.cnf')
     assert f.exists

@@ -8,8 +8,12 @@ scenario:
 lint:
   name: yamllint
 platforms:
-  - name: mariadb-centos
+  - name: mariadb-centos7
     image: centos:7
+    command: /sbin/init
+    privileged: true
+  - name: mariadb-centos8
+    image: centos:8
     command: /sbin/init
     privileged: true
 provisioner:
@@ -23,8 +27,8 @@ provisioner:
     ssh_connection:
       pipelining: true
   inventory:
-    host_vars:
-      mariadb-centos:
+    group_vars:
+      all:
         mariadb_databases:
           - name: molecule
             pass: elucelom
