@@ -1,11 +1,14 @@
-import os
-
-import testinfra.utils.ansible_runner
-from testinfra.utils.ansible_runner import AnsibleRunner
-
 testinfra_hosts = ["ansible://mariadb-centos7"]
 
 
-def test_mariadb_server_config(host):
+def test_mariadb_el7_config(host):
     f = host.file('/etc/my.cnf.d/innodb.cnf')
     assert f.contains('innodb_large_prefix=1')
+
+
+testinfra_hosts = ["ansible://mariadb-centos8"]
+
+
+def test_mariadb_el8_config(host):
+    f = host.file('/etc/my.cnf.d/innodb.cnf')
+    assert not f.contains('innodb_large_prefix=1')
