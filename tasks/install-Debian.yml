@@ -6,6 +6,7 @@
       - mariadb-server
       - openssl
       - python-mysqldb
+      - python3-mysqldb
     state: present
   register: mysqlinstall
   notify: start mysql
