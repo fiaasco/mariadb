@@ -32,9 +32,12 @@
 
 - name: put conf.d templates
   template:
-    src: innodb.cnf.j2
-    dest: /etc/my.cnf.d/innodb.cnf
+    src: "{{ item }}.j2"
+    dest: "/etc/my.cnf.d/{{ item }}"
     owner: root
     group: root
     mode: "0644"
   notify: restart mysql
+  loop:
+    - innodb.cnf
+    - mysqldump.conf
