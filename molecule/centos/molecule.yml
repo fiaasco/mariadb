@@ -5,8 +5,11 @@ driver:
   name: docker
 scenario:
   name: centos
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: mariadb-centos7
     image: centos:7
@@ -24,8 +27,6 @@ provisioner:
       jinja2_extensions: jinja2.ext.do
       gather_timeout: 30
       timeout: 30
-    ssh_connection:
-      pipelining: true
   inventory:
     group_vars:
       all:
@@ -35,9 +36,5 @@ provisioner:
           - name: molecule2
             pass: elucelom2
         mariadb_admin: admin@mole.cule
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8

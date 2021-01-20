@@ -1,3 +1,7 @@
-ansible>=2.9.0,<2.10.0
-molecule==2.22
-docker
+ansible>=2.9.0,<2.11.0
+molecule
+molecule-docker
+testinfra
+ansible-lint
+yamllint
+flake8

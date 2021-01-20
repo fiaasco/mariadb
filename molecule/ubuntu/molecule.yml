@@ -5,8 +5,11 @@ driver:
   name: docker
 scenario:
   name: ubuntu
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: mariadb-ubuntu-bionic
     image: ubuntu:bionic
@@ -24,8 +27,6 @@ provisioner:
       jinja2_extensions: jinja2.ext.do
       gather_timeout: 30
       timeout: 30
-    ssh_connection:
-      pipelining: true
   inventory:
     host_vars:
       mariadb-ubuntu-bionic:
@@ -37,9 +38,5 @@ provisioner:
     group_vars:
       all:
         mariadb_admin: admin@mole.cule
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8
