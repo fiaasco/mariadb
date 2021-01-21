@@ -5,4 +5,4 @@
 
   tasks:
     - name: run a backup for testing purposes
-      command: automysqlbackup
+      command: automysqlbackup  # noqa 301
